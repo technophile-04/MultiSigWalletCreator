@@ -48,7 +48,7 @@ contract MultiSigCreator {
         address[] memory _owners,
         uint256 _signaturesRequired
     ) public payable {
-        uint256 walletId = multiSigs.length - 1;
+        uint256 walletId = multiSigs.length;
         MultiSigWallet newWallet = new MultiSigWallet{value: msg.value}(
             _chainId,
             _owners,
