@@ -104,6 +104,7 @@ export default function CreateTransaction({
           parseEther("" + parseFloat(amount).toFixed(12)),
           callData,
         );
+        console.log("arified hash: ", ethers.utils.arrayify(newHash));
 
         const signature = await userSigner?.signMessage(ethers.utils.arrayify(newHash));
         console.log("signature: ", signature);

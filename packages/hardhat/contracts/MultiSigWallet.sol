@@ -92,19 +92,25 @@ contract MultiSigWallet {
         emit Deposit(msg.sender, msg.value, address(this).balance);
     }
 
-    function addOwner(address _owner, uint256 _signatureRequired)
+    function addOwner(address _owner, uint256 _signaturesRequired)
         public
         onlySelf
-        atLeastOneSignatures(_signatureRequired)
+        atLeastOneSignatures(_signaturesRequired)
     {
         require(
             address(_owner) != address(0),
             "addOwner : Adress of Owner cannot be zero address"
         );
         require(!isOwner[_owner], "addOwner: Duplicate address not allowed");
+        require(
+            _signaturesRequired <= owners.length,
+            "signatures required cannot be greater than owners count"
+        );
 
         owners.push(_owner);
-        minSignaturesRequired = _signatureRequired;
+        minSignaturesRequired = _signaturesRequired;
+        isOwner[_owner] = true;
+        emit OwnerChanged(_owner, true);
     }
 
     function removeOwner(address _owner, uint256 _signaturesRerequired)

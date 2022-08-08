@@ -57,10 +57,10 @@ const { ethers } = require("ethers");
 */
 
 /// 📡 What chain are your contracts deployed to?
+let BACKEND_URL = "http://localhost:49899/";
 const initialNetwork = NETWORKS.localhost; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
 
 // 😬 Sorry for all the console logging
-let BACKEND_URL = "http://localhost:49899/";
 
 const DEBUG = true;
 const NETWORKCHECK = true;
@@ -207,7 +207,7 @@ function App(props) {
   const [signaturesRequired, setSignaturesRequired] = useState();
   const [nonce, setNonce] = useState(0);
 
-  const signaturesRequiredContract = useContractReader(readContracts, contractName, "signaturesRequired");
+  const signaturesRequiredContract = useContractReader(readContracts, contractName, "minSignaturesRequired");
   const nonceContract = useContractReader(readContracts, contractName, "nonce");
 
   useEffect(() => {
@@ -588,15 +588,6 @@ function App(props) {
             blockExplorer={blockExplorer}
             contractConfig={contractConfig}
           />
-          {/* <Contract
-        name={"MultiSigWallet"}
-        price={price}
-        signer={userSigner}
-        provider={localProvider}
-        address={address}
-        blockExplorer={blockExplorer}
-        contractConfig={contractConfig}
-      /> */}
         </Route>
         <Route path="/hints">
           <Hints
@@ -655,7 +646,7 @@ function App(props) {
       <ThemeSwitch />
 
       {/* 🗺 Extra UI like gas price, eth price, faucet, and support: */}
-      <div style={{ position: "fixed", textAlign: "left", left: 0, bottom: 20, padding: 10 }}>
+      {/* <div style={{ position: "fixed", textAlign: "left", left: 0, bottom: 20, padding: 10 }}>
         <Row align="middle" gutter={[4, 4]}>
           <Col span={8}>
             <Ramp price={price} address={address} networks={NETWORKS} />
@@ -682,17 +673,14 @@ function App(props) {
 
         <Row align="middle" gutter={[4, 4]}>
           <Col span={24}>
-            {
-              /*  if the local provider has a signer, let's show the faucet:  */
-              faucetAvailable ? (
-                <Faucet localProvider={localProvider} price={price} ensProvider={mainnetProvider} />
-              ) : (
-                ""
-              )
-            }
+            {faucetAvailable ? (
+              <Faucet localProvider={localProvider} price={price} ensProvider={mainnetProvider} />
+            ) : (
+              ""
+            )}
           </Col>
         </Row>
-      </div>
+      </div> */}
     </div>
   );
 }
