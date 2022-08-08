@@ -57,8 +57,9 @@ const { ethers } = require("ethers");
 */
 
 /// 📡 What chain are your contracts deployed to?
-let BACKEND_URL = "http://localhost:49899/";
-const initialNetwork = NETWORKS.localhost; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
+// let BACKEND_URL = "http://localhost:49899/";
+let BACKEND_URL = "https://multisig-wallet-sb.herokuapp.com/";
+const initialNetwork = NETWORKS.goerli; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
 
 // 😬 Sorry for all the console logging
 
